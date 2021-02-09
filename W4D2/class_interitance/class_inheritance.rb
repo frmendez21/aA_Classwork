@@ -17,17 +17,24 @@ end
     
 class Manager < Employee
 
-    def initialize(name, title, salary, boss, employees)
+    def initialize(name, title, salary, boss, employees = [])
         super(name, title, salary, boss) 
-        @employees = employees  
+        @employees = employees
     end
 
     def bonus(multiplier) 
-        bonus = 0
-        @employees.each do |employee|
-            bonus += empolyee.bonus(multiplier)
+      self.calc_salary * multiplier
+    end
+
+    def calc_salary
+      sal = 0
+      @employees.each do |employee|
+        if employee.is_a?(Manager)
+          sal += employee.calc_salary
         end
-        bonus * multiplier
+        sal += employee.salary
+      end
+      sal
     end
 
 end
