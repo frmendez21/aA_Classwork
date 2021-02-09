@@ -2,6 +2,7 @@ require_relative './00_tree_node.rb'
 require 'byebug'
 class KnightPathFinder
     attr_accessor :root_node
+    attr_reader :considered_pos
 
     #moves: [0,0]start  [1,2][
         MOVES = [
@@ -67,7 +68,7 @@ class KnightPathFinder
     end
     
     def find_path(end_pos)
-        debugger
+
         path = root_node.dfs(end_pos)
         trace_path_back(path)
     end
@@ -85,3 +86,5 @@ class KnightPathFinder
     end
 end 
 
+kpf = KnightPathFinder.new([0,0])
+p kpf.considered_pos.length
