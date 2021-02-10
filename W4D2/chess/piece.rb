@@ -1,4 +1,4 @@
-require_relative './board.rb'
+
 
 class Piece
     attr_reader :color, :board, :pos

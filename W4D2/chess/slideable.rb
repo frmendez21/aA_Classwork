@@ -30,6 +30,8 @@ module Slideable
 
   def grow_unblocked_moves_in_dir(dx, dy)
     #list of all possible moves in one direction
+    # check that we overtake an enemy position
+    #check that we do NOT overtake our own teams positions
     output = []
     x, y = @pos
     x += dx
@@ -38,6 +40,9 @@ module Slideable
     while can_move
       new_pos = [x,y]
       if (x < 0 || x > 7) || (y < 0 || y > 7)
+        can_move = false
+      elsif @board[new_pos].symbol != @color 
+        output << new_pos
         can_move = false
       elsif @board[new_pos] == nil
         output << new_pos
