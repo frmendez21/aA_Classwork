@@ -16,7 +16,7 @@ module Slideable
     #return array of all possible moves form cur in every direction
     #self.move_dirs -> grow_blocked
     output = []
-    self.move_dirs.each do |dir|
+    move_dirs.each do |dir|
       output += grow_unblocked_moves_in_dir(dir[0], dir[1])
     end
     output
@@ -58,6 +58,7 @@ class Rook < Piece
     @color
   end
 
+  private
   def move_dirs
     horizontal_dirs
   end
@@ -70,7 +71,7 @@ class Bishop < Piece
     @color
   end
 
-
+  private
   def move_dirs
     diagonal_dirs
   end
@@ -83,6 +84,7 @@ class Queen < Piece
     @color
   end
 
+  private
   def move_dirs
     horizontal_dirs + diagonal_dirs
   end
