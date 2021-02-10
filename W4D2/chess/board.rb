@@ -1,17 +1,18 @@
-require_relative './peice.rb'
+require_relative './piece.rb'
 class Board
 
     def initialize
         @rows = Array.new(8)  { Array.new(8) {nil} }
     end
 
-    def move_peice(start_pos, end_pos)
+    def move_piece(start_pos, end_pos)
         if self[start_pos] == nil
             raise 'No peice at start' 
         elsif self[end_pos] != nil 
             raise 'Cannot move to end position' 
         else 
             self[start_pos], self[end_pos] = self[end_pos], self[start_pos]
+            self[end_pos].pos = end_pos
         end
     end
 
