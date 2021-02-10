@@ -10,7 +10,7 @@ class Piece
     end
 
     def to_s
-        puts "Color: #{@color}, Position: #{@pos}"
+        symbol 
     end
 
     def empty?
