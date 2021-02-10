@@ -26,7 +26,7 @@ class Piece
     end
 
     def symbol
-        @color
+        raise "Declare symbol in subclass"
     end
 
     private

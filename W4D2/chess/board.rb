@@ -1,5 +1,8 @@
 require_relative './piece.rb'
 require_relative './nullpiece.rb'
+require_relative './slideable.rb'
+require_relative './stepable.rb'
+require_relative './pawn.rb'
 class Board
 
     def initialize
@@ -27,4 +30,18 @@ class Board
     end
 end
 
-board = Board.new  
+board = Board.new
+rook = Rook.new("W", board, [0,0])
+puts rook.symbol
+board[[0,0]] = rook
+bishop = Bishop.new('B', board, [0,5])
+board[[0,5]] = bishop
+queen = Queen.new('W', board, [0,3])
+board[[0,3]] = queen
+king = King.new('W', board, [3,2])
+board[[0,1]] = king
+knight = Knight.new('B', board, [3,3])
+board[[3,3]] = knight
+pawn = Pawn.new('B', board, [1,2])
+board[[1,2]] = pawn
+p pawn.moves

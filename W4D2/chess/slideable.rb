@@ -1,4 +1,4 @@
-require_relative "./piece.rb"
+# require_relative "./piece.rb"
 
 module Slideable
   HORIZONTAL_DIRS = [[0,1],[0,-1],[1,0],[-1,0]] #diff between start and next pos
@@ -41,12 +41,12 @@ module Slideable
       new_pos = [x,y]
       if (x < 0 || x > 7) || (y < 0 || y > 7)
         can_move = false
-      elsif @board[new_pos].symbol != @color 
+      elsif @board[new_pos].color != @color 
         output << new_pos
-        can_move = false
-      elsif @board[new_pos] == nil
+        can_move = false if @board[new_pos].symbol != nil
+      elsif @board[new_pos].is_a?(NullPiece)
         output << new_pos
-      else
+      else #if @board[new_pos].color == @color
         can_move = false
       end
       x += dx
@@ -60,7 +60,7 @@ class Rook < Piece
   include Slideable
 
   def symbol
-    @color
+    "\u265c".encode('utf-8')
   end
 
   private
@@ -73,7 +73,7 @@ class Bishop < Piece
   include Slideable
 
   def symbol
-    @color
+    "\u265d".encode('utf-8')
   end
 
   private
@@ -86,7 +86,7 @@ class Queen < Piece
   include Slideable
 
   def symbol
-    @color
+    "\u265b".encode('utf-8')
   end
 
   private
