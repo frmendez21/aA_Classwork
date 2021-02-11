@@ -41,12 +41,13 @@ module Slideable
       new_pos = [x,y]
       if (x < 0 || x > 7) || (y < 0 || y > 7)
         can_move = false
-      elsif @board[new_pos].color != @color 
+      elsif @board[new_pos].color == @color 
+        can_move = false
+        break
+      elsif @board[new_pos].color != @color || @board[new_pos].is_a?(NullPiece)
         output << new_pos
-        can_move = false if @board[new_pos].symbol != nil
-      elsif @board[new_pos].is_a?(NullPiece)
-        output << new_pos
-      else #if @board[new_pos].color == @color
+        can_move = false unless @board[new_pos].is_a?(NullPiece)
+      else 
         can_move = false
       end
       x += dx
