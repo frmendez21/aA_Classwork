@@ -20,6 +20,33 @@ class Array
     end
 
     def my_transpose
-        
+        result = []
+        (0...self.length).each do |i|
+            inner = []
+            (0...self.length).each do |j|
+                inner << self[j][i]
+            end 
+            result << inner    
+        end
+        result    
     end
+
+    def stock_picker(arr)
+        newarr = []
+        diff = 0
+        (0...arr.length).each do |i|
+            (i...arr.length).each do |j|
+                if arr[i] - arr[j] > diff
+                    diff = arr[i] - arr[j]
+                    newarr = [i,j]
+                end
+            end
+        end
+        newarr
+    end
+    
+
+
+
+
 end
