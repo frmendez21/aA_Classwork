@@ -2,10 +2,10 @@ require "io/console"
 
 KEYMAP = {
   " " => :space,
-  "h" => :left,
-  "j" => :down,
-  "k" => :up,
-  "l" => :right,
+  # "h" => :left,
+  # "j" => :down,
+  # "k" => :up,
+  # "l" => :right,
   "w" => :up,
   "a" => :left,
   "s" => :down,
@@ -83,6 +83,18 @@ class Cursor
         return @cursor_pos 
     when :left, :right, :up, :down 
         update_pos(MOVES[key])
+<<<<<<< HEAD
+=======
+        # if :left 
+        #     update_pos([0, -1])
+        # elsif :right 
+        #     update_pos([0, 1])
+        # elsif :up 
+        #     update_pos([-1, 0])
+        # elsif :down
+        #     update_pos([1, 0])
+        # end
+>>>>>>> 92273c779cb289f5e55651fc899b3143aa4885a7
         return nil 
     when :ctrl_c 
         Process.exit(0)
