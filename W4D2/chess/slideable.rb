@@ -87,6 +87,7 @@ class Queen < Piece
 
   def symbol
     "\u265b".encode('utf-8')
+    
   end
 
   private
