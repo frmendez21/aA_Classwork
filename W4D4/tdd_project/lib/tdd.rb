@@ -31,22 +31,34 @@ class Array
         result    
     end
 
-    def stock_picker(arr)
-        newarr = []
-        diff = 0
-        (0...arr.length).each do |i|
-            (i...arr.length).each do |j|
-                if arr[i] - arr[j] > diff
-                    diff = arr[i] - arr[j]
-                    newarr = [i,j]
-                end
-            end
-        end
-        newarr
-    end
+end
+
+def stock_picker(arr)
+    [arr.index(arr.min), arr.index(arr.max)]
+end
     
 
+class Disks 
+    SIZES = ['small', 'medium', 'large']
+    attr_reader :small_disk, :medium_disk, :large_disk
+    def initialize
+        @small_disk = SIZES[0]
+        @medium_disk = SIZES[1]
+        @large_disk = SIZES[2]
+    end
+end
 
+class Pegs 
+    def initialize
+        @peg1 = []
+        @peg2 = []
+        @peg3 = []
+    end
 
+    def move_disk(peggie1, peggie2)
+        if peggie1[-1].index(SIZES) < peggie2[-1].index(SIZES)
+            peggie2 << peggie1.pop 
+        end
+    end
 
 end
