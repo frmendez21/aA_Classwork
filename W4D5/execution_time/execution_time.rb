@@ -21,5 +21,37 @@ def my_min(arr)
 end
 
 list = [ 0, 3, 5, 4, -5, 10, 1, 90 ]
-p my_min_quadratic(list) #time-complexity : O(n^2)
-p my_min(list)  # time-complexity : O(n)
+ my_min_quadratic(list) #time-complexity : O(n^2)
+ my_min(list)  # time-complexity : O(n)
+
+
+def largest_contiguous_subsum(list)
+    arr = []
+    (0...list.length).each do |i|
+        (i+1...list.length).each do |j|
+            arr << [list[i], list[j]]
+        end
+    end
+    max = arr[0]
+    (1...arr.length).each do |i|
+        if arr[i].sum > max.sum
+            max = arr[i]
+        end
+    end
+    max.sum
+end
+
+def largest_contiguous_subsum_lin(list)
+    current = list.first
+    max = list.first
+    (1...list.length).each do |i|
+        current += list[i] unless list[i] < 0
+        max = current if current > max
+    end
+    max
+end
+
+
+list = [5, 3, -7]
+p largest_contiguous_subsum(list) #time-conplexity : O(n^3)
+p largest_contiguous_subsum_lin(list) # O(n) 
