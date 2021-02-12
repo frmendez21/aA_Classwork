@@ -21,4 +21,15 @@ describe TowerOfHanoi do
             expect(towerofhanoi.move([3, 2, 1], [])).to eq([1])
         end
     end
+
+    describe '#game_over?' do 
+        
+        it "should end game when player wins" do 
+            towerofhanoi.stack1 = []
+            towerofhanoi.stack2 = [3, 2, 1]
+            towerofhanoi.stack3 = []
+            expect(towerofhanoi.game_over?).to be(true)
+            expect { towerofhanoi.game_over? }.to output("You win!\n").to_stdout
+        end
+    end
 end

@@ -1,6 +1,7 @@
 class TowerOfHanoi
 
-  attr_reader :stack1, :stack2, :stack3
+  # attr_reader :stack1, :stack2, :stack3
+  attr_accessor :stack1, :stack2, :stack3
   def initialize
     @stack1 = [3,2,1]
     @stack2 = []
@@ -9,6 +10,7 @@ class TowerOfHanoi
 
   def game_over?
     if @stack2.length == 3 || @stack3.length == 3
+      puts 'You win!'
       return true
     else
       return false
@@ -26,6 +28,8 @@ class TowerOfHanoi
     end_stack
   end
 
+
+  
   def play
     while game_over? == false
       print @stack1
@@ -51,8 +55,6 @@ class TowerOfHanoi
       elsif input2 == 3
         last = @stack3
       end
-
-
       self.move(start, last)
     end
   end
