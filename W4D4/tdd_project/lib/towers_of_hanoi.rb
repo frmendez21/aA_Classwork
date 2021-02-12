@@ -19,11 +19,8 @@ class TowerOfHanoi
 
   def move(start_stack, end_stack)
     disc = start_stack[-1]
-    raise "No disc here" if start_stack.empty?
     if end_stack.empty? || disc < end_stack[-1]
       end_stack << start_stack.pop
-    else
-      raise "That disc is too big!"
     end
     end_stack
   end
@@ -32,11 +29,10 @@ class TowerOfHanoi
   
   def play
     while game_over? == false
-      print @stack1
-      print @stack2 
-      print @stack3
+      render
       start = nil
       last = nil
+      begin
       puts "Enter the stack number you wish to take from"
       input = gets.chomp.to_i
       puts "Enter the stack number you wish to add to."
@@ -55,16 +51,46 @@ class TowerOfHanoi
       elsif input2 == 3
         last = @stack3
       end
-      self.move(start, last)
+      rescue
+        retry if start.empty? 
+      end
+    
+
+      self.move(start,last) unless start.empty?
     end
   end
+
+  def render
+    print 1
+    print @stack1
+    puts
+    print 2
+    print @stack2
+    puts
+    print 3
+    print @stack3
+    puts
+  end
+    
+  
+  
+  
+  
+
   
 
 
 end
 
-# game = TowerOfHanoi.new
+class ArgumentError
+  def message 
+    "No discs here"
+  end
+end
 
-# game.play
+
+game = TowerOfHanoi.new
+
+game.play
 
 
