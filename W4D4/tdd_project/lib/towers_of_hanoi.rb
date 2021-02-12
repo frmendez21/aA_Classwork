@@ -10,10 +10,10 @@ class TowerOfHanoi
   end
 
   def game_over?
-    if @stack2.length == 3 || @stack3.length == 3
+    if (@stack1.length == 3 || @stack2.length == 3 || @stack3.length == 3)  && @counter != 0
       puts "It took you #{@counter} tries to finish the game"
       puts 'You win!'
-      return true
+      return true 
     else
       return false
     end
@@ -31,6 +31,7 @@ class TowerOfHanoi
   
   def play
     while game_over? == false
+      system("clear")
       render
       start = nil
       last = nil
@@ -38,9 +39,9 @@ class TowerOfHanoi
       
       begin
       @counter += 1
-      puts "Enter the stack number you wish to take from"
+      puts "Enter the tower number you wish to take from"
       input = gets.chomp.to_i
-      puts "Enter the stack number you wish to add to."
+      puts "Enter the tower number you wish to add to."
       input2 = gets.chomp.to_i
       if input == 1
         start = @stack1
@@ -59,43 +60,29 @@ class TowerOfHanoi
       rescue 
         retry if start.empty? 
       end
-    
-
+      system("clear")
+      render
       self.move(start,last) unless start.empty?
     end
   end
 
   def render
     print "Tower 1: "
-    print @stack1
+    @stack1.each { |e| print "|#{e}| " }
     puts
     print "Tower 2: "
-    print @stack2
+    @stack2.each { |e| print "|#{e}| " }
     puts
     print "Tower 3: "
-    print @stack3
+    @stack3.each { |e| print "|#{e}| " }
     puts
   end
     
-  
-  
-  
-  
-
-  
-
-
 end
-
-class ArgumentError
-  def message 
-    "No discs here"
-  end
-end
-
 
 game = TowerOfHanoi.new
 
 game.play
 
 
+99363068321
