@@ -1,15 +1,17 @@
 class TowerOfHanoi
 
   # attr_reader :stack1, :stack2, :stack3
-  attr_accessor :stack1, :stack2, :stack3
+  attr_accessor :stack1, :stack2, :stack3, :counter
   def initialize
     @stack1 = [3,2,1]
     @stack2 = []
     @stack3 = []
+    @counter = 0
   end
 
   def game_over?
     if @stack2.length == 3 || @stack3.length == 3
+      puts "It took you #{@counter} tries to finish the game"
       puts 'You win!'
       return true
     else
@@ -32,7 +34,10 @@ class TowerOfHanoi
       render
       start = nil
       last = nil
+
+      
       begin
+      @counter += 1
       puts "Enter the stack number you wish to take from"
       input = gets.chomp.to_i
       puts "Enter the stack number you wish to add to."
@@ -51,7 +56,7 @@ class TowerOfHanoi
       elsif input2 == 3
         last = @stack3
       end
-      rescue
+      rescue 
         retry if start.empty? 
       end
     
@@ -61,13 +66,13 @@ class TowerOfHanoi
   end
 
   def render
-    print 1
+    print "Tower 1: "
     print @stack1
     puts
-    print 2
+    print "Tower 2: "
     print @stack2
     puts
-    print 3
+    print "Tower 3: "
     print @stack3
     puts
   end
