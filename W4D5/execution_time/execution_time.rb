@@ -28,10 +28,11 @@ list = [ 0, 3, 5, 4, -5, 10, 1, 90 ]
 def largest_contiguous_subsum(list)
     arr = []
     (0...list.length).each do |i|
-        (i+1...list.length).each do |j|
-            arr << [list[i], list[j]]
+        (i...list.length).each do |j|
+            arr << list[i..j]
         end
     end
+    arr
     max = arr[0]
     (1...arr.length).each do |i|
         if arr[i].sum > max.sum
@@ -45,13 +46,14 @@ def largest_contiguous_subsum_lin(list)
     current = list.first
     max = list.first
     (1...list.length).each do |i|
-        current += list[i] unless list[i] < 0
+        current = 0 if current < 0
+        current += list[i] 
         max = current if current > max
     end
     max
 end
 
 
-list = [5, 3, -7]
+list = [2, 3, -6, 7, -6, 7]
 p largest_contiguous_subsum(list) #time-conplexity : O(n^3)
 p largest_contiguous_subsum_lin(list) # O(n) 
