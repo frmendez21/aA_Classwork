@@ -47,3 +47,53 @@ INSERT INTO
 VALUES
   ('Frank', 'Mendez'), 
   ('Lamar', 'Poole');
+
+INSERT INTO 
+  questions (title, body, user_id)
+VALUES
+    (('Hmm', 'Whats a good question?', (SELECT id FROM users WHERE fname = 'Frank' AND lname = 'Mendez')),
+    ('Lets see', 'What another good question?', (SELECT id FROM users WHERE fname = 'Lamar' AND lname = 'Poole')));
+
+INSERT INTO 
+    question_follows (user_id, question_id)
+VALUES 
+    ((SELECT id FROM users WHERE fname = 'Frank' AND lname = 'Mendez'),
+    (SELECT id FROM users WHERE fname = 'Lamar' AND lname = 'Poole'));
+
+INSERT INTO 
+    replies (question_id, parent_reply, user_id, body)
+VALUES 
+    ((SELECT id FROM questions WHERE title = 'Hmm'),
+    NULL,
+    (SELECT id FROM users WHERE fname = 'Frank' AND lname = 'Mendez'),
+    "I dont know");
+
+INSERT INTO 
+    replies (question_id, parent_reply, user_id, body)
+VALUES 
+    ((SELECT id FROM questions WHERE title = 'Lets see'),
+    NULL,
+    (SELECT id FROM users WHERE fname = 'Lamar' AND lname = 'Poole'),
+    "I have no clue");
+
+INSERT INTO 
+    question_likes (likes, user_id, question_id)
+VALUES 
+    (4,
+    (SELECT id FROM users WHERE fname = 'Frank' AND lname = 'Mendez'),
+    (SELECT id FROM questions WHERE title = 'Hmm'));
+
+INSERT INTO 
+    question_likes (likes, user_id, question_id)
+VALUES 
+    (4,
+    (SELECT id FROM users WHERE fname = 'Lamar' AND lname = 'Poole'),
+    (SELECT id FROM questions WHERE title = 'Lets see'));
+--     CREATE TABLE question_likes (
+--   id INTEGER PRIMARY KEY,
+--   likes INTEGER,
+--   user_id INTEGER NOT NULL,
+--   question_id INTEGER NOT NULL,
+--   FOREIGN KEY (user_id) REFERENCES users(id),
+--   FOREIGN KEY (question_id) REFERENCES questions(id)
+-- );
