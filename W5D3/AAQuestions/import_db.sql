@@ -1,4 +1,9 @@
 PRAGMA foreign_keys = ON;
+DROP TABLE IF EXISTS question_likes;
+DROP TABLE IF EXISTS replies;
+DROP TABLE IF EXISTS question_follows;
+DROP TABLE IF EXISTS questions;
+DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
     id INTEGER PRIMARY KEY,
@@ -10,7 +15,7 @@ CREATE TABLE questions (
     id INTEGER PRIMARY KEY,
     title TEXT NOT NULL,
     body TEXT NOT NULL,
-
+    user_id INTEGER NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
@@ -51,8 +56,8 @@ VALUES
 INSERT INTO 
   questions (title, body, user_id)
 VALUES
-    (('Hmm', 'Whats a good question?', (SELECT id FROM users WHERE fname = 'Frank' AND lname = 'Mendez')),
-    ('Lets see', 'What another good question?', (SELECT id FROM users WHERE fname = 'Lamar' AND lname = 'Poole')));
+    ('Hmm', 'Whats a good question?', (SELECT id FROM users WHERE fname = 'Frank' AND lname = 'Mendez')),
+    ('Lets see', 'What another good question?', (SELECT id FROM users WHERE fname = 'Lamar' AND lname = 'Poole'));
 
 INSERT INTO 
     question_follows (user_id, question_id)
