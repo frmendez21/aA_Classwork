@@ -167,6 +167,20 @@ def start_at_craiglockhart
   execute(<<-SQL)
   SQL
 end
+# == Schema Information
+#
+# Table name: stops
+#
+#  id          :integer      not null, primary key
+#  name        :string
+#
+# Table name: routes
+#
+#  num         :string       not null, primary key
+#  company     :string       not null, primary key
+#  pos         :integer      not null, primary key
+#  stop_id     :integer
+
 
 def craiglockhart_to_sighthill
   # Find the routes involving two buses that can go from Craiglockhart to
