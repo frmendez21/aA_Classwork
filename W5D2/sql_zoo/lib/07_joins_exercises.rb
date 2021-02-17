@@ -127,6 +127,20 @@ def prolific_actors
   # Obtain a list in alphabetical order of actors who've had at least 15
   # starring roles.
   execute(<<-SQL)
+  SELECT
+    actors.name
+  FROM
+    actors
+  JOIN
+    castings ON castings.actor_id = actors.id
+  WHERE
+    castings.ord = 1
+  GROUP BY
+    actors.name
+  HAVING
+    COUNT(*) >= 15
+  ORDER BY
+    actors.name
   SQL
 end
 
@@ -134,6 +148,17 @@ def films_by_cast_size
   # List the films released in the year 1978 ordered by the number of actors
   # in the cast (descending), then by title (ascending).
   execute(<<-SQL)
+  SELECT
+    movies.title,COUNT(DISTINCT castings.actor_id) AS actor_count
+  FROM
+    movies
+  JOIN castings ON castings.movie_id = movies.id
+  WHERE
+    movies.yr = 1978
+  GROUP BY
+    movies.id
+  ORDER BY
+    COUNT(DISTINCT castings.actor_id) desc, movies.title asc;
   SQL
 end
 
