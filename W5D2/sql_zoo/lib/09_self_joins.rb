@@ -151,8 +151,12 @@ def craiglockhart_and_tollcross
     routes a
   JOIN
     routes b ON a.company = b.company AND a.num = b.num
+  JOIN 
+    stops stop_a ON a.stop_id = stop_a.id 
+  JOIN 
+    stops stop_b ON b.stop_id = stop_b.id
   WHERE
-    a.stop_id = 115 AND b.stop_id = 137;
+    stop_a.name = 'Craiglockhart' AND stop_b.name = 'Tollcross';
     SQL
   end
 
