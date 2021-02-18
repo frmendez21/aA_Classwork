@@ -1,4 +1,5 @@
 require_relative 'user'
+require_relative 'replies'
 class Question
   attr_accessor :id, :title, :body, :user_id
     def self.all 
@@ -32,10 +33,27 @@ class Question
         Question.new(question.first)
     end
 
+    def self.find_by_author_id(user_id)
+      question = QuestionsDatabase.instance.execute(<<-SQL, user_id)
+      SELECT 
+          *
+      FROM 
+          questions
+      WHERE 
+          user_id = ?
+      SQL
+      return nil unless question.length > 0
+      Question.new(question.first)
+  end
+
     def initialize(options)
         @id = options['id']
         @title = options['title']
         @body = options['body']
         @user_id = options['user_id']
+    end
+
+    def replies
+      Replies.find_by_question_id(id)
     end
 end

@@ -31,7 +31,7 @@ class Replies
             question_id = ?
         SQL
         return nil unless reply.length > 0
-        QuestionFollows.new(reply.first)
+        Replies.new(reply.first)
     end
 
     def self.find_by_user_id(user_id)

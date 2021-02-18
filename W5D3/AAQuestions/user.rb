@@ -1,6 +1,7 @@
 require 'sqlite3'
 require 'singleton'
-
+require_relative 'questions'
+require_relative 'replies'
 class QuestionsDatabase < SQLite3::Database 
     include Singleton 
 
@@ -50,7 +51,11 @@ class User
         @lname = options['lname']
     end
     
-    def authored_questions()
+    def authored_questions
+      Question.find_by_author_id(id)
+    end
 
+    def authored_replies
+      Replies.find_by_user_id(id)
     end
 end
