@@ -49,7 +49,6 @@ class QuestionFollows
     def initialize(options)
         @id = options['id']
         @question_id = options['question_id']
-        @body = options['body']
         @user_id = options['user_id']
     end
 end

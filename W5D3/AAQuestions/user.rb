@@ -50,4 +50,7 @@ class User
         @lname = options['lname']
     end
     
+    def authored_questions()
+
+    end
 end
