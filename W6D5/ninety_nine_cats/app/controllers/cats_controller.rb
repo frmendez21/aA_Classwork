@@ -11,6 +11,7 @@ class CatsController < ApplicationController
 
     def create 
         @cat = Cat.new(cats_params)
+       
         if @cat.save 
             redirect_to cat_url(@cat.id)
         else 
@@ -26,6 +27,6 @@ class CatsController < ApplicationController
     private 
 
     def cats_params 
-        params.require(:cat).permit(:name, :birth_date, :sex, :color)
+        params.require(:cat).permit(:name, :birth_date, :sex, :color, :description)
     end
 end

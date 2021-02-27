@@ -5,13 +5,13 @@
              <input type="text" name="cat[name]" value="<%= @cat.name %>">
       </label>
 
-      <input type="radio" name="@cat[sex]" value="m" id="male cat" >
+      <input type="radio" name="cat[sex]" value="M" >
       <label>Male</label>
-      <input type="radio" name="@cat[sex]" value="f" id="female cat">
+      <input type="radio" name="cat[sex]" value="F">
       <label>Female</label>
 
       <label for="cat_color">Color</label>
-      <select name="@cat[color]" id="cat_color">
+      <select name="cat[color]" id="cat_color">
               <option disabled selected>Select Color</option>
               <option value="red">red</option>
               <option value="gold">gold</option>
@@ -20,10 +20,10 @@
       </select>
 
       <label for="birth_date">Birth Date</label>
-      <input id="birth_date" type="date" name="@cat[birth_date]">
+      <input id="birth_date" type="date" name="cat[birth_date]">
       
       <label for="description">Description</label>
-      <textarea name="@cat[description]"></textarea>
+      <textarea name="cat[description]"></textarea>
 
       <input type="submit" value="add cat">
 </form>
