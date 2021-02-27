@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_26_215349) do
+ActiveRecord::Schema.define(version: 2021_02_27_004220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cats", force: :cascade do |t|
-    t.date "birth_date", null: false
+    t.date "birth_date"
     t.string "color", null: false
     t.string "name", null: false
     t.string "sex", limit: 1, null: false
-    t.text "description", null: false
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

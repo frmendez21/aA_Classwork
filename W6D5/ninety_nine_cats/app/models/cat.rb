@@ -1,6 +1,6 @@
 require 'date'
 class Cat < ApplicationRecord
-    validates :birth_date, :color, :name, :sex, :description, presence: true
+    validates  :color, :name, :sex, presence: true
 
     def age 
         date = Time.now.strftime("%d/%m/%Y %H:%M").split(' ').first 
