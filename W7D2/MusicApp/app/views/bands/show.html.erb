@@ -1,0 +1,14 @@
+<div id="band-name-txt"><%= "#{@band.name}'s Page!" %></div>
+
+<ul>
+    <% @band.albums.each do |album|%>
+        <% live_output = ""%>
+        <% !album.live ? live_output = "Created in Studio" : live_output = "Created Live"%>
+        <li><%= album.title %></li>
+        <li><%= album.year %></li>
+        <li><%= live_output %></li>
+    <% end %>
+</ul>
+
+<a href="<%= new_band_album_url(@band.id) %>">Add Albums</a><br>
+<a href="<%= bands_url %>">Back To All Bands</a>

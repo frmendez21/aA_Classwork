@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MusicApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header class="top">
+        <h1 class="app-header">Music App</h1>
+    
+      <% if logged_in? %>
+        <div class='logged-in-log-out'>
+          <div id='logged-in-txt'><%= "Logged In As: #{current_user.email}" %></div>
+          <form id="logout-btn"action="/session" method="POST">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" value="Log Out">
+          </form>
+        </div>
+      <% end %>
+    </header>
+    <%= yield %>
+  </body>
+</html>
