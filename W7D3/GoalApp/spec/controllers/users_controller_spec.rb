@@ -17,9 +17,11 @@ RSpec.describe UsersController, type: :controller do
                 expect(User.last.username).to eql("Terry")
             end
             it "should login user" do 
+                user = User.last
                 expect(session[:session_token]).to eql(user.session_token)
             end
             it "should redirect to user show page" do 
+                user = User.last
                 expect(response).to redirect_to(user_url(user))
             end
         end

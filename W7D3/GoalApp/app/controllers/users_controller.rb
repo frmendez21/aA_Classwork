@@ -5,7 +5,7 @@ class UsersController < ApplicationController
             login!(@user)
             redirect_to user_url(@user.id)
         else 
-            flash[:errors] = @user.errors.full_messages, status: 422
+            flash[:errors] = @user.errors.full_messages#, status: 422
             render :new
         end
     end 
