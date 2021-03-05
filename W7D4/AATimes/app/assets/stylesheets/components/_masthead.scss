@@ -24,10 +24,19 @@
 		color: $dark-gray;
 	}
 
+	a:hover {
+		text-decoration: underline;
+		cursor: pointer;
+	}
 	ul {
 		display: flex;
 	}
+	ul>li:first-child {
+		font-weight: bold;
+	}
 }
+
+
 
 .logo {
 	max-width: 400px;
@@ -56,6 +65,7 @@
 
 	button:hover {
 		background-color: $lightest-gray;
+		color: $gray
 	}
 
 	a,
@@ -68,6 +78,10 @@
 		margin-right: 5px;
 	}
 
+	i:hover {
+		text-decoration: underline;
+		cursor: pointer;
+	}
 	strong {
 		color: green;
 	}
