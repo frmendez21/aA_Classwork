@@ -86,3 +86,16 @@
 		color: green;
 	}
 }
+
+@media all and (max-width: 1000px) {
+    .language-nav {
+        display: none;
+    }
+	.right-nav ul li:nth-child(-n + 2) {
+		display: none;
+	}
+
+	.left-nav {
+		margin: 0;
+	}
+}
