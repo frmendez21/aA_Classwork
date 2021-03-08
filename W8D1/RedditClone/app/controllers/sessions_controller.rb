@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
             params[:user][:password]
         )
         if @user
-            log_in!(@user)
+            login!(@user)
             redirect_to user_url(@user)
         else
             render :new
