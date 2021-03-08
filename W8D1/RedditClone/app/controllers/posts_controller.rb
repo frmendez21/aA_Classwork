@@ -3,7 +3,7 @@ class PostsController < ApplicationController
     before_action :require_logged_in, except: :show
 
     before_action :require_author, except: [:new, :create, :show]
-
+    helper_method :is_author?
     def new
         @post = Post.new
         @post.sub_id = params[:sub_id]
@@ -50,7 +50,7 @@ class PostsController < ApplicationController
 
     private
     def post_params
-        params.require(:post).permit(:title, :url, :content)
+        params.require(:post).permit(:title, :url, :content, :subs)
     end
 
     def require_author
@@ -61,8 +61,9 @@ class PostsController < ApplicationController
         @post = Post.find_by(id: params[:id])
         if @post
             @post.user_id == current_user.id
+        else  
+            false
         end
-        false
     end
 
 end

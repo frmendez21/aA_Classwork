@@ -6,7 +6,27 @@
     <% button_text = 'Edit Post' %>
 <% end %>
 <div>
-    <form>
-        
+    <form action="<%= action_url %>" method='post'>
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <% if type == "edit" %>
+            <input type="hidden" name="_method" value='patch'>
+        <% end %>
+        <label>Title: 
+            <input type="text" name="post[title]" value="<%= @post.title %>">
+        </label>
+        <label>Url: 
+            <input type="text" name="post[url]" value="<%= @post.url %>">
+        </label>
+        <label>Content: 
+            <input type="textbox" name="post[content]" value="<%= @post.content %>">
+        </label>
+        <label >Subs: 
+            <% Sub::SUB_IDS.each do |id, name| %>
+                <label><%= name %>
+                    <input type="checkbox" name="" id="">
+                </label>
+            <% end %>
+        </label>
+        <button><%= button_text %></button>
     </form>
 </div>

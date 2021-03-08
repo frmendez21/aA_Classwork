@@ -5,7 +5,7 @@ class SubsController < ApplicationController
     before_action :require_moderator, only: [:edit, :update]
 
     helper_method :is_moderator?
-
+    SUB_IDS ||= sub_ids
     def new
         @sub = Sub.new
         render :new
@@ -72,7 +72,8 @@ class SubsController < ApplicationController
         @sub = Sub.find_by(id: params[:id])
         if @sub
             @sub.user_id == current_user.id
+        else  
+            false
         end
-        false
     end
 end

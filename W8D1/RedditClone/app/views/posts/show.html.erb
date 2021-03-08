@@ -1,0 +1,10 @@
+
+<% if @post.url %>
+  <h1><%= link_to(@post.title, @post.url) %></h1>
+<% else %>
+    <h1><%= @post.title %></h1>
+<% end %>
+<p><%= @post.content %></p>
+<% if is_author? %>
+    <a href="<%= edit_post_url(@post) %>"><button>Edit</button></a>
+<% end %>

@@ -12,7 +12,17 @@
 #  updated_at :datetime         not null
 #
 class Post < ApplicationRecord
-    validates :title 
+    validates :title, presence:true 
+    
     belongs_to :sub
-    belongs_to :author
+
+    belongs_to :author,
+        class_name: :User, 
+        foreign_key: :user_id
+
+    has_many :post_subs
+
+    has_many :subs, 
+        through: :post_subs, 
+        source: :sub 
 end
