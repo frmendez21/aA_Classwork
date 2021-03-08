@@ -24,6 +24,9 @@
         <input type="hidden" name="_method" value="DELETE">
         <button>Sign Out</button>
       </form>
+    <% else %>
+      <a href="<%= new_user_url %>"><button>Sign Up</button></a>
+      <a href="<%= new_session_url %>"><button>Sign In</button></a>
     <% end %>
     <% if flash[:errors] %>
         <%= flash[:errors].join(', ') %>

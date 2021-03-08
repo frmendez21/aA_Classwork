@@ -69,7 +69,10 @@ class SubsController < ApplicationController
     end
 
     def is_moderator? 
-        @sub = Sub.find_by(user_id: current_user.id)
-        @sub ? true : false 
+        @sub = Sub.find_by(id: params[:id])
+        if @sub
+            @sub.user_id == current_user.id
+        end
+        false
     end
 end
