@@ -1,0 +1,5 @@
+<a href="<%= new_sub_url %>"><button>Create Sub</button></a>
+<% @subs.each do |sub| %>
+    <a href="<%= sub_url(sub) %>"><h3><%= sub.title %></h3></a>
+    <%= render 'sub', sub: sub %>
+<% end %>

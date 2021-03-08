@@ -4,6 +4,7 @@ class SubsController < ApplicationController
 
     before_action :require_moderator, only: [:edit, :update]
 
+    helper_method :is_moderator?
 
     def new
         @sub = Sub.new
@@ -13,6 +14,7 @@ class SubsController < ApplicationController
     def create
         @sub = Sub.new(sub_params)
         @sub.user_id = current_user.id
+        # debugger
         if @sub.save
             redirect_to sub_url(@sub)
         else
@@ -42,9 +44,20 @@ class SubsController < ApplicationController
     end
 
     def index
-        @sub = Sub.all
+        @subs = Sub.all
         render :index
     end
+
+    def destroy 
+        @sub = Sub.find_by(id: params[:id])
+        if @sub 
+            @sub.destroy 
+            redirect_to subs_url
+        else 
+            flash[:errors] = @sub.errors.full_messages
+            redirect_to sub_url(@sub)
+        end 
+    end 
 
     private
     def sub_params
@@ -52,6 +65,11 @@ class SubsController < ApplicationController
     end
 
     def require_moderator
-        redirect_to subs_url unless current_user.id == self.moderator.id
+        redirect_to subs_url unless is_moderator? 
+    end
+
+    def is_moderator? 
+        @sub = Sub.find_by(user_id: current_user.id)
+        @sub ? true : false 
     end
 end
