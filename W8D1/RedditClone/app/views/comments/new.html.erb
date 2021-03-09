@@ -1,0 +1,12 @@
+<h1>Add A Comment</h1>
+<form action="/comments" method="post">
+    <input 
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+
+    <label>Content:
+        <input type="textbox" name="comment[content]">
+    </label>
+    <button>Sign In</button>
+</form>
