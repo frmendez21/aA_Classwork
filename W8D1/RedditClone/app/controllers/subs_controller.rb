@@ -4,7 +4,7 @@ class SubsController < ApplicationController
 
     before_action :require_moderator, only: [:edit, :update]
 
-    helper_method :is_moderator?, :sub_ids, :has_posts?
+    helper_method :is_moderator?, :sub_ids
 
     
 
@@ -76,14 +76,5 @@ class SubsController < ApplicationController
         else  
             false
         end
-    end
-
-    def self.sub_ids 
-        Sub.all.pluck(:id, :title)
-    end
-
-    def has_posts?
-        @sub= Sub.find_by(id: params[:id])
-        @sub.posts.any?
     end
 end
