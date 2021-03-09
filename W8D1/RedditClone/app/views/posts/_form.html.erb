@@ -21,9 +21,15 @@
             <input type="textbox" name="post[content]" value="<%= @post.content %>">
         </label>
         <label >Subs: 
-            <% Sub::SUB_IDS.each do |id, name| %>
+            <% SubsController.sub_ids.each do |id, name| %>
                 <label><%= name %>
-                    <input type="checkbox" name="" id="">
+                    <input 
+                        type="checkbox" 
+                        name="post[sub_ids][]" 
+                        value="<%= id %>"
+                        <% if id.to_s == params[:sub_id] %>
+                            <%= 'checked' %>
+                        <% end %>>
                 </label>
             <% end %>
         </label>

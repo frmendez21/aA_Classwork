@@ -1,3 +1,8 @@
 <h1><%= @sub.title %></h1>
 <%= render 'sub',  sub: @sub %>
 <a href="<%= new_sub_post_url(@sub) %>"><button>Make A New Post</button></a>
+<% if has_posts? %>
+    <% @sub.posts.each do |post| %>
+        <a href="<%= post_url(post) %>"><h3><%= post.title %></h3></a>
+    <% end %>
+<% end %>

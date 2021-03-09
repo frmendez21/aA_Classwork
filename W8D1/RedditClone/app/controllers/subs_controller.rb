@@ -4,8 +4,10 @@ class SubsController < ApplicationController
 
     before_action :require_moderator, only: [:edit, :update]
 
-    helper_method :is_moderator?
-    SUB_IDS ||= sub_ids
+    helper_method :is_moderator?, :sub_ids, :has_posts?
+
+    
+
     def new
         @sub = Sub.new
         render :new
@@ -14,7 +16,6 @@ class SubsController < ApplicationController
     def create
         @sub = Sub.new(sub_params)
         @sub.user_id = current_user.id
-        # debugger
         if @sub.save
             redirect_to sub_url(@sub)
         else
@@ -75,5 +76,14 @@ class SubsController < ApplicationController
         else  
             false
         end
+    end
+
+    def self.sub_ids 
+        Sub.all.pluck(:id, :title)
+    end
+
+    def has_posts?
+        @sub= Sub.find_by(id: params[:id])
+        @sub.posts.any?
     end
 end

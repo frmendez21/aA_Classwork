@@ -28,7 +28,7 @@
       <a href="<%= new_user_url %>"><button>Sign Up</button></a>
       <a href="<%= new_session_url %>"><button>Sign In</button></a>
     <% end %>
-    <% if flash[:errors] %>
+    <% unless flash[:errors].nil? %>
         <%= flash[:errors].join(', ') %>
     <% end %>
     <%= yield %>

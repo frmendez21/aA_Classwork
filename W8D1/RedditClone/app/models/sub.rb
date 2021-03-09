@@ -16,11 +16,10 @@ class Sub < ApplicationRecord
         class_name: :User, 
         foreign_key: :user_id 
 
-    has_many :posts
-
     has_many :post_subs 
 
     has_many :posts, 
         through: :post_subs, 
         source: :post
+        
 end
