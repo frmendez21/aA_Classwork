@@ -4,6 +4,8 @@ class Session
   # find the cookie for this app
   # deserialize the cookie into a hash
   def initialize(req)
+    cookie = req.cookies.find(name: '_rails_lite_app')
+    cookie 
   end
 
   def [](key)
