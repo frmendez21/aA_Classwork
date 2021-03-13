@@ -83,8 +83,85 @@ function innerBubbleSortLoop(arr, i, madeAnyswaps, outerBubbleSortLoop) {
         outerBubbleSortLoop(madeAnyswaps);
     }
 };
-function outerBubbleSortLoop(justswaps) {
-    console.log('In Outer Bubble Sort')
+
+function absurdBubbleSort(arr, sortCompletionCallback) {
+    function outerBubbleSortLoop(madeAnySwaps) {
+        if (madeAnySwaps === true) {
+            innerBubbleSortLoop(arr, 0, false, outerBubbleSortLoop);
+        } else {
+            sortCompletionCallback(arr);
+        }
+        // Begin an inner loop if you made any swaps. Otherwise, call
+        // `sortCompletionCallback`.
+    }
+
+    outerBubbleSortLoop(true);
+    // Kick the first outer loop off, starting `madeAnySwaps` as true.
+}
+
+// absurdBubbleSort([3, 2, 1], function (arr) {
+//     console.log("Sorted array: " + JSON.stringify(arr));
+//     reader.close();
+// });
+
+// myBind
+
+Function.prototype.myBind = function(context) {
+    debugger
+    return () => {
+        that.apply(context)
+    }
 };
 
-innerBubbleSortLoop([3, 5, 2, 1, 6], 0, false, outerBubbleSortLoop)
+// Below is alternative way that we should never do after the test
+// Function.prototype.myBind = function(context) {
+//     debugger
+//     let that = this
+//     return function() {
+//         that.apply(context)
+//     }
+// };
+
+Function.prototype.myThrottle = function(intv) {
+    let tooSoon = false;
+    return () => { 
+        if (tooSoon === false) {
+            tooSoon = true;
+            setTimeout( () => {
+            tooSoon = false;
+            }, intv);
+                // debugger
+            this();
+        
+        }
+    }
+};
+
+
+// class Neuron {
+   
+//     fire() {
+//         console.log("Firing!");
+//     }
+// }
+
+// const neuron = new Neuron();
+// neuron.fire = neuron.fire.myThrottle(5000);
+// // When we create a new Neuron,
+// // we can call #fire as frequently as we want
+// // debugger
+// // The following code will try to #fire the neuron every 10ms. Try it in the console:
+// const interval = setInterval(() => {
+//     neuron.fire();
+// }, 100);
+
+// // You can use clearInterval to stop the firing:
+// clearInterval(interval);
+
+Function.prototype.myDebounce = function(interval) {
+    return () => {
+        setTimeout( () => {
+        this();
+        }, interval) 
+    }
+};
