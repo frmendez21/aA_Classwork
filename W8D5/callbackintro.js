@@ -137,31 +137,49 @@ Function.prototype.myThrottle = function(intv) {
     }
 };
 
+// Function.prototype.myDebounce = function(interval) {
+//   let timeout = 0;
+//   const debounced = () => {
+//     timeout += inteveral;
+//   };
+//   return setTimeout(function () {
+//     debounced();
+//   }, interval);
+//   // when invoked set a timeout that invoke soriginal func after intv if invoked early reset timeout
+// };
 
-// class Neuron {
-   
-//     fire() {
-//         console.log("Firing!");
-//     }
+// class SearchBar {
+//   constructor() {
+//     this.query = "";
+
+//     this.type = this.type.bind(this);
+//     this.search = this.search.bind(this);
+//   }
+
+//   type(letter) {
+//     this.query += letter;
+//     this.search();
+//   }
+
+//   search() {
+//     console.log(`searching for ${this.query}`);
+//   }
 // }
+// const searchBar = new SearchBar();
 
-// const neuron = new Neuron();
-// neuron.fire = neuron.fire.myThrottle(5000);
-// // When we create a new Neuron,
-// // we can call #fire as frequently as we want
-// // debugger
-// // The following code will try to #fire the neuron every 10ms. Try it in the console:
-// const interval = setInterval(() => {
-//     neuron.fire();
-// }, 100);
+// const queryForHelloWorld = () => {
+//   searchBar.type("h");
+//   searchBar.type("e");
+//   searchBar.type("l");
+//   searchBar.type("l");
+//   searchBar.type("o");
+//   searchBar.type(" ");
+//   searchBar.type("w");
+//   searchBar.type("o");
+//   searchBar.type("r");
+//   searchBar.type("l");
+//   searchBar.type("d");
+// };
 
-// // You can use clearInterval to stop the firing:
-// clearInterval(interval);
-
-Function.prototype.myDebounce = function(interval) {
-    return () => {
-        setTimeout( () => {
-        this();
-        }, interval) 
-    }
-};
+// queryForHelloWorld();
+// searchBar.search = searchBar.search.myDebounce(500);
