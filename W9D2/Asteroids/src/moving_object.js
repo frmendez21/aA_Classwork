@@ -21,5 +21,14 @@ MovingObject.prototype.move = function () {
     this.position[1] += this.vel[1];
 }
 
+// Math.hypot(x2-x1, y2-y1)
+
+
+MovingObject.prototype.isCollidedWith= function (otherObject){
+    const distance = Math.hypot(this.position[0]-otherObject.position[0],this.position[1]-otherObject.position[1]);
+    return ( distance < this.radius + otherObject.radius)
+}
+
+
 module.exports = MovingObject;
 

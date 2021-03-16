@@ -56,4 +56,19 @@ Game.prototype.wrap = function wrap (pos) {
     return wrappedPos[0] === 0 && wrappedPos[1] === 0 ? pos : wrappedPos;
 }
 
+Game.prototype.checkCollisions = function(){
+    for (let i =0; i< this.asteroids.length; i++){
+        for(let j=i+1; j< this.asteroids.length; j++){
+            if (this.asteroid[i].isCollidedWith(this.asteroids[j])){ 
+                alert("COLLISION")
+            }
+        }
+    }
+}
+
+Game.prototype.step = function (){
+    this.moveObjects();
+    this.checkCollisions();
+}
+
 module.exports = Game;
