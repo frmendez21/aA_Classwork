@@ -1,11 +1,15 @@
 const Game = require('./game')
 
-function Gameview(ctx){
-    this.game = new Game(ctx);
+function Gameview(ctx, game){
+    this.game = game;
     this.ctx = ctx;
 }
 
 Gameview.prototype.start = function start(){
-    this.game.draw(this.ctx);
-    this.game.moveObjects();
+    setInterval( () => {
+        this.game.draw(this.ctx);
+        this.game.moveObjects();
+    }, 20);
 }
+
+module.exports = Gameview;

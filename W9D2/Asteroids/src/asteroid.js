@@ -5,12 +5,15 @@ const PROPERTIES = {
     COLOR: 'pink',
     RADIUS: 15
 };
-function Asteroid(options) {
-    this.color = PROPERTIES.COLOR;
-    this.radius = PROPERTIES.RADIUS;
-    this.position = options.position;
-    this.vel = Util.randomVec(options.vel);
+function Asteroid(options, game) {
+    options.color = PROPERTIES.COLOR;
+    options.radius = PROPERTIES.RADIUS;
+    options.vel = Util.randomVec(4);
+    options.game = game;
     MovingObject.call(this, options);
+    
 };
 
 Util.inherits(Asteroid, MovingObject)
+
+module.exports = Asteroid;
