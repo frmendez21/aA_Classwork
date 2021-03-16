@@ -1,7 +1,4 @@
-const Util = require('./utils')
 const Asteroid = require('./asteroid')
-
-
 
 const CONSTANTS = {
      DIM_X : 500,
@@ -9,7 +6,7 @@ const CONSTANTS = {
      NUM_ASTEROIDS : 5 
 } 
 
-function Game(ctx) { 
+function Game() { 
     this.asteroids = [];
     this.addAsteroids();
 }
@@ -29,7 +26,9 @@ Game.prototype.randomPosition = function randomPosition(){
 
 Game.prototype.draw = function(ctx){
 
-   ctx.clearRect(0, 0, 400, 500);
+   ctx.clearRect(0, 0, CONSTANTS.DIM_Y, CONSTANTS.DIM_X);
+   ctx.fillStyle = 'black';
+   ctx.fillRect(0, 0, CONSTANTS.DIM_X, CONSTANTS.DIM_Y)
     for (let i =0; i< this.asteroids.length; i++){
         this.asteroids[i].draw(ctx);
     }

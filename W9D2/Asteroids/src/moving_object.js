@@ -8,7 +8,6 @@ function MovingObject (obj) {
 }
 
 MovingObject.prototype.draw = function(ctx) {
-    
     ctx.fillStyle = this.color;
     ctx.beginPath();
     ctx.arc(this.position[0], this.position[1], this.radius, 0, 2 * Math.PI, true);
