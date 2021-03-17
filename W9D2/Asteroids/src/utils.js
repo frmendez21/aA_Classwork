@@ -10,6 +10,9 @@ const Util = {
   // Scale the length of a vector by the given amount.
   scale(vec, m) {
     return [vec[0] * m, vec[1] * m];
+  },
+  dist(p1, p2) {
+    
   }
 };
 

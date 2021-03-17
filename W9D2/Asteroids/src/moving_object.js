@@ -24,11 +24,17 @@ MovingObject.prototype.move = function () {
 // Math.hypot(x2-x1, y2-y1)
 
 
-MovingObject.prototype.isCollidedWith= function (otherObject){
+MovingObject.prototype.isCollidedWith = function (otherObject){
     const distance = Math.hypot(this.position[0]-otherObject.position[0],this.position[1]-otherObject.position[1]);
     return ( distance < this.radius + otherObject.radius)
 }
 
+MovingObject.prototype.collideWith = function (otherObject) {
+    if (this.isCollidedWith(otherObject)) {
+        this.game.remove(this);
+        this.game.remove(otherObject);
+    }
+}
 
 module.exports = MovingObject;
 
