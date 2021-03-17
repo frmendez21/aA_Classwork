@@ -1,30 +1,50 @@
+body {
+    background-color: rgb(253, 253, 215);
+}
+
 .ttt {
     display: flex;
     justify-content: center;
 }
 ul {
-    display: flex;;
+    display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     width: 750px;
-    border-style: solid;
+    border-left: solid 4px black;
+    border-top: solid 4px black;
     padding: 0;
-    background-color: gray;
+    background-color: rgb(212, 212, 212);
 }
 h1 {
     text-align: center;
+    text-decoration: underline;
+    font-size: 60px;
+    color:green;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    
 }
 ul li {
-    width: 248px;
-    height: 244px;
+    width: 32.802%;
+    height: 200px;
     list-style: none;
-    border-left: solid 1px black;
-    border-right: solid 1px black;
-    border-bottom: solid 1px black;
+    border-right: solid 4px black;
+    border-bottom: solid 4px black;
+    font-family: 'Courier New', Courier, monospace;
     text-align: center;
     font-size: 200px;
     font-weight: bold;
 }
 ul li:hover {
     background-color: yellow;
+}
+
+p {
+    text-align: center;
+    font-weight: bold;
+  
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 40px;
+    
 }

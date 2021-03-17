@@ -2,7 +2,7 @@ class View {
   constructor(game, $el) {
     this.game = game;
     this.el = $el;
-    this.count = 0;
+    this.hasWon = false;
 
     this.setupBoard();
     this.bindEvents();
@@ -10,26 +10,36 @@ class View {
 
   bindEvents() {
     this.el.on("click", "li", (e) => {
-      let pos = $(e.target).attr("pos")
-      pos = pos.split(",").map(x => Number(x))
+      let pos = $(e.target).attr("pos");
+      pos = pos.split(",").map(x => Number(x));
+      const currentPlayer = this.game.currentPlayer;
       try {
-        $(e.target).append(this.game.currentPlayer)
-        this.game.playMove(pos)
+        this.game.playMove(pos);
       } catch(err) {
-        alert(err.msg)
-        return
+        alert(err.msg);
+        return;
       }
-      $(e.target).css("background-color", "white")
-      this.makeMove()
+      $(e.target).append(currentPlayer);
+      if (currentPlayer === 'x') {
+        $(e.target).css("background-color", "blue");
+      } else {
+        $(e.target).css("background-color", "green");
+      }
+      this.checkWinner();
     })
   }
 
-  makeMove() {
-    let winner = this.game.winner()
-
-    if (this.game.isOver() && winner && this.count === 0) {
-      $(`<p>You win, ${winner}</p>`).appendTo($("ul"))
-      this.count += 1
+  checkWinner() {
+    const winner = this.game.winner()
+    let $winnerMessage = $(`<p>PLAYER ${winner.toUpperCase()} WINS!</p>`)
+    if (winner && !this.hasWon) {
+      if (winner === 'x') {
+        $winnerMessage.css('color', 'blue')
+      } else {
+        $winnerMessage.css('color', 'green')
+      }
+      $("body").append($winnerMessage);
+      this.hasWon = true;
     }
   }
 
