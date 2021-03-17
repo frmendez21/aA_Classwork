@@ -1,0 +1,17 @@
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: auto;
+    border-style: solid;
+    background-color: gray;
+}
+
+ul li {
+    width: 40px;
+    border-left: solid 1px black;
+    border-right: solid 1px black;
+}
+ul li:hover {
+    background-color: yellow;
+}
