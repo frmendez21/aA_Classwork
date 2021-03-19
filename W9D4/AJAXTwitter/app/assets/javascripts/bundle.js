@@ -1,40 +1,64 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./frontend/api_util.js":
+/*!******************************!*\
+  !*** ./frontend/api_util.js ***!
+  \******************************/
+/***/ ((module) => {
+
+const APIUtil = {
+  followUser: id => {
+    return $.ajax({ 
+        url: `/users/${id}/follow`, 
+        method:"POST", 
+        dataType: "json"
+    })
+  },
+
+  unfollowUser: id => {
+    return $.ajax({ 
+        url: `/users/${id}/follow`, 
+        method: "DELETE", 
+        dataType: "json"
+    })
+  }
+};
+
+module.exports = APIUtil;
+
+
+/***/ }),
+
 /***/ "./frontend/follow_toggle.js":
 /*!***********************************!*\
   !*** ./frontend/follow_toggle.js ***!
   \***********************************/
-/***/ ((module) => {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+const APIUtil = __webpack_require__(/*! ./api_util */ "./frontend/api_util.js");
 class FollowToggle { 
-    constructor(el, data){ 
+    constructor(el){ 
         this.$el= $(el); 
         this.userId= this.$el.data("id"); 
         this.followState= this.$el.data("state");
         this.render(); 
-        this.handleClick(); 
+        this.handleClick();
     }
 
     handleClick(){ 
         this.$el.on("click", e => { 
             e.preventDefault(); 
-            if(this.followState=== "unfollowed"){
-                this.followState= "followed"
-                $.ajax({ 
-                    url: `/users/${this.userId}/follow`, 
-                    method:"POST", 
-                    dataType: "json"
-                }).then(()=> {
+            if(this.followState === "unfollowed"){
+            this.followState = 'followed'
+            APIUtil.followUser(this.userId)
+            .then(()=> {
                     this.render()
                 })
-            }else{ 
-                this.followState= "unfollowed"
-                $.ajax({ 
-                    url: `/users/${this.userId}/follow`, 
-                    method: "DELETE", 
-                    dataType: "json"
-                }).then(()=> {
+            }else if (this.followState === 'followed'){ 
+                this.followState = 'unfollowed'
+                APIUtil.unfollowUser(this.userId)
+                .then(()=> {
                     this.render()
                 })
             }
@@ -44,9 +68,9 @@ class FollowToggle {
     render(){ 
         if( this.followState=== "unfollowed"){
             this.$el.text("Follow!")
-        }else { 
+        }else if (this.followState === 'followed'){ 
             this.$el.text("Unfollow!"); 
-        }
+        } 
     }
 }
 
