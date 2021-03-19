@@ -13,6 +13,14 @@ const APIUtil = {
         method: "DELETE", 
         dataType: "json"
     })
+  },
+
+  searchUsers: queryVal => {
+    return $.ajax({
+        url: '/users/search',
+        data: {query: queryVal }, 
+        dataType: "json"
+    })
   }
 };
 

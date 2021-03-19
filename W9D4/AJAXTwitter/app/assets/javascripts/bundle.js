@@ -22,6 +22,14 @@ const APIUtil = {
         method: "DELETE", 
         dataType: "json"
     })
+  },
+
+  searchUsers: queryVal => {
+    return $.ajax({
+        url: '/users/search',
+        data: {query: queryVal }, 
+        dataType: "json"
+    })
   }
 };
 
@@ -70,7 +78,6 @@ class FollowToggle {
     }
 
     render(){ 
-    
         if( this.followState=== "unfollowed"){
             this.$el.text("Follow!")
             this.$el.prop("disabled", false)
@@ -88,6 +95,49 @@ class FollowToggle {
 }
 
 module.exports= FollowToggle; 
+
+/***/ }),
+
+/***/ "./frontend/users_search.js":
+/*!**********************************!*\
+  !*** ./frontend/users_search.js ***!
+  \**********************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+const APIUtil = __webpack_require__(/*! ./api_util */ "./frontend/api_util.js");
+class UsersSearch {
+    constructor(el) {
+        this.$el = $(el);
+        this.$input = this.$el.find("input[name='search']")
+        this.$ul = this.$el.find(".users")
+        this.handleInput();
+    }
+
+    handleInput() {
+        this.$input.on("input", e => {
+            e.preventDefault();
+            APIUtil.searchUsers(e.originalEvent.data)
+            .then((res) => {
+                this.renderResults(res)
+            });
+        });
+    }
+
+    renderResults(res) {
+        this.$ul.empty();
+        for(let i = 0; i < res.length; i++) {
+            console.log(res[i])
+            let name = res[i].username;
+            let id = res[i].id
+            let $li = $(`<li></li>`)
+            $li.html(`<a href='/users/${id}'>${name}</a>`)
+            this.$ul.append($li);
+        }
+    }
+}
+
+
+module.exports = UsersSearch;
 
 /***/ })
 
@@ -125,11 +175,15 @@ var __webpack_exports__ = {};
   !*** ./frontend/twitter.js ***!
   \*****************************/
 const FollowToggle= __webpack_require__(/*! ./follow_toggle.js */ "./frontend/follow_toggle.js"); 
-
+const UsersSearch = __webpack_require__(/*! ./users_search */ "./frontend/users_search.js")
 $( () => { 
     $(".follow-toggle").each((i, el) => { 
-        new FollowToggle(el, {})
-    }) 
+        new FollowToggle(el)
+    }); 
+
+    $("nav.users-search").each((i, el) => {
+        new UsersSearch(el);
+    })
 })
 })();
 

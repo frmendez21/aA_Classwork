@@ -32,7 +32,6 @@ class FollowToggle {
     }
 
     render(){ 
-    
         if( this.followState=== "unfollowed"){
             this.$el.text("Follow!")
             this.$el.prop("disabled", false)
