@@ -50,15 +50,19 @@ class FollowToggle {
         this.$el.on("click", e => { 
             e.preventDefault(); 
             if(this.followState === "unfollowed"){
-            this.followState = 'followed'
+            this.followState = 'following'
+            this.render();
             APIUtil.followUser(this.userId)
             .then(()=> {
+                    this.followState = 'followed'
                     this.render()
                 })
             }else if (this.followState === 'followed'){ 
-                this.followState = 'unfollowed'
+                this.followState = 'unfollowing'
+                this.render();
                 APIUtil.unfollowUser(this.userId)
                 .then(()=> {
+                    this.followState = 'unfollowed'
                     this.render()
                 })
             }
@@ -66,11 +70,20 @@ class FollowToggle {
     }
 
     render(){ 
+    
         if( this.followState=== "unfollowed"){
             this.$el.text("Follow!")
+            this.$el.prop("disabled", false)
         }else if (this.followState === 'followed'){ 
             this.$el.text("Unfollow!"); 
-        } 
+            this.$el.prop("disabled", false)
+        } else if (this.followState === 'following') {
+            this.$el.text("following...")
+            this.$el.prop("disabled", true)
+        } else if (this.followState === 'unfollowing') {
+            this.$el.text("unfollowing...")
+            this.$el.prop("disabled", true)
+        }
     }
 }
 
