@@ -1,3 +1,4 @@
+const APIUtil = require('./api_util');
 class FollowToggle { 
     constructor(el, data){ 
         this.$el= $(el); 
@@ -9,23 +10,20 @@ class FollowToggle {
 
     handleClick(){ 
         this.$el.on("click", e => { 
+            debugger
             e.preventDefault(); 
-            if(this.followState=== "unfollowed"){
-                this.followState= "followed"
-                $.ajax({ 
-                    url: `/users/${this.userId}/follow`, 
-                    method:"POST", 
-                    dataType: "json"
-                }).then(()=> {
+            if(this.followState === "unfollowed"){
+                this.$el.followState = 'following'
+                this.render();
+            APIUtil.followUser(this.userId)
+            .then(()=> {
                     this.render()
                 })
-            }else{ 
-                this.followState= "unfollowed"
-                $.ajax({ 
-                    url: `/users/${this.userId}/follow`, 
-                    method: "DELETE", 
-                    dataType: "json"
-                }).then(()=> {
+            }else if (this.followState === 'followed'){ 
+                this.$el.followState = 'unfollowing'
+                this.render();
+                APIUtil.unfollowUser(this.userId)
+                .then(()=> {
                     this.render()
                 })
             }
@@ -34,9 +32,17 @@ class FollowToggle {
 
     render(){ 
         if( this.followState=== "unfollowed"){
-            this.$el.text("Follow!")
-        }else { 
-            this.$el.text("Unfollow!"); 
+            this.$el.html("Follow!")
+            this.$el.prop("disabled", false)
+        }else if (this.followState === 'followed'){ 
+            this.$el.html("Unfollow!"); 
+            this.$el.prop("disabled", false)
+        } else if (this.followState === 'following') {
+            this.$el.html("following..."); 
+            this.$el.prop("disabled", true)
+        } else if (this.followState === 'unfollowing') {
+            this.$el.html("unfollowing..."); 
+            this.$el.prop("disabled", true)
         }
     }
 }
