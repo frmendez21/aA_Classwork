@@ -4,13 +4,19 @@ export default class Weather extends React.Component {
     constructor(props) {
         super(props)
 
-    };
+        this.getPos = this.getPos.bind(this);
+      
+    }
 
-    
+  
+    getPos() {
+    }
 
-    render () {
+   
+
+    render() {
         return (
-        <div></div>
+        <button onClick={this.getPos}>Click</button>
         )
     }
-};
+}
