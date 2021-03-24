@@ -71,3 +71,43 @@ h1 {
     justify-content: space-between;
     padding: 5px;
 }
+
+.tabs {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    border-top: none;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    background-color: lavenderblush;
+    
+}
+
+.tabsTitle, .tabsContent {
+    display: flex;
+    
+}
+
+.tabsTitle {
+    width: 100%;
+    justify-content: space-between;
+}
+
+.tabsContent {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.tabs li {
+    width: 33.33333%;
+    cursor: pointer;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.tabs li:hover {
+    background-color: black;
+    color: white
+}
