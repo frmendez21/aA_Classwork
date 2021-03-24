@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom';
 import React from 'react';
 import Clock from './clock';
 import Tabs from './tabs';
+import Weather from './weather'
 
 const tabsObj = [
     {title: "one",
@@ -22,6 +23,8 @@ const Root = (props) => {
             <Clock />
             <h1>Tabs</h1>
             <Tabs tabsObj={tabsObj} /> 
+            <h1>Weather</h1>
+            <Weather />
         </div>
     )
 };
