@@ -6,7 +6,7 @@ const Board = (props) =>{
  const viewBoard = props.gameBoard.grid.map((row, idx1) => {
  return  row.map( (tile,idx2) => {
       return(
-            <div key={idx2} >
+            <div key={idx2} className="tile">
               <Tile key={idx2} tile={tile} updateGame={props.updateGame}/>
             </div>
     )}

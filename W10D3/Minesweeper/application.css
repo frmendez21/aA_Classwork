@@ -1,0 +1,43 @@
+body{
+  background-color: black;
+}
+.space {
+  background: url("https://media.giphy.com/media/MXQnyEQwBJ6eTj90L5/giphy.gif") no-repeat scroll right center;
+  background-origin: content-box;
+  background-size: 100% 100%;
+  height: 800px;
+  width: 800px;
+  color:white;
+  /* background: black; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* justify-content: space-between; */
+}
+
+.tile {
+  border: solid white 1px;
+  flex: 1 0 20%;
+}
+
+ .tile-bomb{
+  background: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/58a9d104-fcd2-4b37-8931-08327969df9a/d6w4atb-8cbec6dc-a1ac-4e11-ab3b-8c7478b24c4c.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwic3ViIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsImF1ZCI6WyJ1cm46c2VydmljZTpmaWxlLmRvd25sb2FkIl0sIm9iaiI6W1t7InBhdGgiOiIvZi81OGE5ZDEwNC1mY2QyLTRiMzctODkzMS0wODMyNzk2OWRmOWEvZDZ3NGF0Yi04Y2JlYzZkYy1hMWFjLTRlMTEtYWIzYi04Yzc0NzhiMjRjNGMuZ2lmIn1dXX0.CZjl3KM0ntwh6LNdItPISF9pGKQcakuZxrZ-NdkmTes") no-repeat center ;
+  background-origin: content-box;
+  background-size: 100px 100px;
+  height: 100%;
+  width: 100%;  
+}
+.tile-flag{
+  background: url("images/probe2.gif") no-repeat center;
+  background-origin: content-box;
+  background-size: 100px 100px;
+  height: 100%;
+  width: 100%;
+}
+.tile-empty{
+height: 100%;
+width: 100%;
+}
+.unexplored{
+/* opacity: 0%; */
+}

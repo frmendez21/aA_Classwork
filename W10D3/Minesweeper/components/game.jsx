@@ -6,18 +6,19 @@ import Board from "./board"
     constructor(props) {
         super(props)
         this.state = {
-            board: new MS.Board (4, 5)
+            board: new MS.Board (6, 5)
         }
         this.updateGame = this.updateGame.bind(this)
     }
     updateGame(){      
     
     }
+    
 
     render () {
         // console.log(this.state.board)
         return(
-            <div>
+            <div className="space">
                 <Board gameBoard={this.state.board} updateGame={this.updateGame} />
             </div>
         )
