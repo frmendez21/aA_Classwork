@@ -26,13 +26,13 @@ class Tile extends React.Component{
    if (this.props.tile.flagged) {
     klass = 'flag'
   } else if (this.props.tile.bombed){
-    klass = 'bomb'+' '+subclass
+    klass = 'bomb' + ' ' + subclass
   }
     else if (this.props.tile.adjacentBombCount() > 0) {
       number = this.props.tile.adjacentBombCount();
       klass = 'number' + ' ' + subclass;
   } else {
-    klass = 'empty'+' '+subclass;
+    klass = 'empty' + ' ' + subclass;
   }
 
   return(
