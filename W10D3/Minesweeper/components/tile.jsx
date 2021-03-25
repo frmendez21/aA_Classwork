@@ -4,35 +4,40 @@ class Tile extends React.Component{
   constructor(props){
     super(props);
     this.handleClick = this.handleClick.bind(this);
+    // console.log(this.props);
   }
-
+  
   handleClick(e){
-    // e.preventDefault()
-  console.log('hi')
+    console.log(this.props.tile)
+    
+    this.props.updateGame(this.props.tile, e.altKey)
+    
   }
-
+  
   render(){
     
-  // console.log(this.props);
-  let subclass = ''
-  this.props.tile.explored ? subclass = 'explored' : subclass = 'unexplored'
-  let tile = 'tile'
-  let imgSym = ''
+  console.log(this.props.tile);
+  let subclass = ''  
+  let tile = 'tile'  
   let klass = '';
-  if (this.props.tile.bombed){
+  let number = '';
+  
+  this.props.tile.explored ? subclass = 'explored' : subclass = 'unexplored'
+   if (this.props.tile.flagged) {
+    klass = 'flag'
+  } else if (this.props.tile.bombed){
     klass = 'bomb'+' '+subclass
-    imgSym = ''
-  } else if (this.props.tile.flagged) {
-    klass = 'flag'+' '+subclass
-    imgSym = ''
+  }
+    else if (this.props.tile.adjacentBombCount() > 0) {
+      number = this.props.tile.adjacentBombCount();
+      klass = 'number' + ' ' + subclass;
   } else {
-
     klass = 'empty'+' '+subclass;
   }
 
-
   return(
     <div className={`${tile}-${klass}`} onClick={this.handleClick}>
+      {number}
     </div>
   )
   }

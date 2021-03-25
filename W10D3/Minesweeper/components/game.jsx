@@ -10,12 +10,20 @@ import Board from "./board"
         }
         this.updateGame = this.updateGame.bind(this)
     }
-    updateGame(){      
-    
+    updateGame(tile, flagging){   
+          
+        if(flagging){
+            tile.toggleFlag();
+        } else {
+            tile.explore();
+        }
+
+        this.setState({board: this.state.board})       
     }
     
-
+    
     render () {
+      
         // console.log(this.state.board)
         return(
             <div className="space">
