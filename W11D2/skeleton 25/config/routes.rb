@@ -4,5 +4,6 @@ Rails.application.routes.draw do
     resources :guests, only: [:index, :show] do 
       resources :gifts, only: [:index, :show]
     end
+    resources :gifts, only: [:index, :show]
   end
 end
