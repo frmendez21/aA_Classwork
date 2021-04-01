@@ -25,5 +25,5 @@ if @pokemon.items.length != 0
     end
   end 
 else
-  json.items ({})
+json.items ({})
 end
