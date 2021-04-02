@@ -5,7 +5,6 @@ export const LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
 export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
 
 const receiveCurrentUser = (user) => {
-  debugger
   return {
     type: RECEIVE_CURRENT_USER,
     user
@@ -14,7 +13,7 @@ const receiveCurrentUser = (user) => {
 
 const logoutCurrentUser = () => {
   return {
-    type: RECEIVE_CURRENT_USER
+    type: LOGOUT_CURRENT_USER
   }
 }
 
@@ -25,8 +24,16 @@ const receiveErrors = (errorsArray) => {
   }
 }
 
-export const signup = formUser => dispatch => sessionUtil.signup(formUser).then(user => dispatch(receiveCurrentUser(user)));
+export const signup = formUser => dispatch => (
+  sessionUtil.signup(formUser)
+    .then(user => dispatch(receiveCurrentUser(user)))
+    .fail(err => (dispatch(receiveErrors(err.responseJSON)))
+));
 
-export const login = formUser => dispatch => sessionUtil.login(formUser).then(user => dispatch(receiveCurrentUser(user))).catch(err => dispatch(receiveErrors(err)));
+export const login = formUser => dispatch => (
+  sessionUtil.login(formUser)
+  .then(user => dispatch(receiveCurrentUser(user)))
+  .fail(err => (dispatch(receiveErrors(err.responseJSON)))
+));
 
 export const logout = () => dispatch => sessionUtil.logout().then(() => dispatch(logoutCurrentUser()));

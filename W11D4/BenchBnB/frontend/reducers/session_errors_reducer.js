@@ -4,7 +4,7 @@ export default (state = [], action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_ERRORS:
-      return action.erros;
+      return action.errorsArray;
     case RECEIVE_CURRENT_USER:
       return [];
     default:
